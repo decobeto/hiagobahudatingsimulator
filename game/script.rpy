@@ -1,32 +1,84 @@
 ﻿# The script of the game goes in this file.
 
+image secretaria = "secretaria.png"
+image contrato = "contrato.jpg"
+
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
 define hb = Character("Hiago Bahú", color="#d63031")
 define ht = Character("Hatsune Miku", color="#0EEADF")
+define pov = Character("[povname]", color="#e84393")
 
 
 # The game starts here.
 
 label start:
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
     stop music fadeout 3.0
     scene bg unoesc
     with Dissolve(6.0)
 
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
+    "Hoje é o seu primeiro dia de aula na sua nova faculdade."
+    "Você teve que transferir pois seus pais estavam mudando de cidade devido ao trabalho."
+    "Uma emoção enorme toma conta do seu corpo ao chegar no câmpus."
+    "Entretanto alguns documentos não estão certos, é necessário ir até a secretaria assinar alguns papeis."
 
-    # show eileen happy
+    scene bg secretaria
+    with fade
 
-    # These display lines of dialogue.
+    "A sala tem um design estranho."   
 
-    "Hoje é o seu primeiro dia de aula na faculdade"
+    show secretaria
+    
+    "Moça da Secretaria" "Olá, você é a aluna nova certo?"
+
+    menu: 
+
+        "Oi, sim sou a aluna nova.":
+            jump escolha_nome
+    
+    return
+
+label escolha_nome:
+        
+    "Moça da Secretaria" "Okay, vou precisar que você assine esses papeis."
+    show contrato
+
+    python:
+
+        povname = renpy.input("Assine os papeis com o seu nome:")
+        povname = povname.strip()
+
+    hide contrato
+    pov "Tudo pronto moça."
+
+    "Moça da Secretaria" "Obrigada e BEM VINDA A FACULDADE."
+    hide secretaria
+
+    "Você escuta algo"
+    play sound "audio/siren.mp3"
+    "..."
+    pov "Droga, isso levou mais tempo do que eu imaginava."
+    pov "Preciso correr ou vou chegar atrasada na aula."  
+
+    scene bg black
+    with fade
+
+    "Você sai correndo através do câmpus."
+
+    scene bg unoesc
+    with fade
+
+    "Sente sua respiração ofegante."
+
+    scene bg black
+    with fade
+
+    "Chega dentro da faculdade"
+    "Vira em um corredor e..."
+
+    
 
 
     # This ends the game.

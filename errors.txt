@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 38: expected menuitem
+    jump escolha_nome:
+    ^
+
+Ren'Py Version: Ren'Py 7.3.5.606
+Thu Oct 08 20:56:06 2020
