@@ -2,6 +2,8 @@
 
 image secretaria = "secretaria.png"
 image contrato = "contrato.jpg"
+image hiago = "hiago_oculos.png"
+image hiago_putasso = "hiago_oculos_putasso.png"
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
@@ -10,6 +12,7 @@ define hb = Character("Hiago Bahú", color="#d63031")
 define ht = Character("Hatsune Miku", color="#0EEADF")
 define pov = Character("[povname]", color="#e84393")
 
+$ romance_points = 0
 
 # The game starts here.
 
@@ -21,13 +24,13 @@ label start:
 
     "Hoje é o seu primeiro dia de aula na sua nova faculdade."
     "Você teve que transferir pois seus pais estavam mudando de cidade devido ao trabalho."
-    "Uma emoção enorme toma conta do seu corpo ao chegar no câmpus."
+    "Uma emoção enorme toma conta de você ao chegar no câmpus."
     "Entretanto alguns documentos não estão certos, é necessário ir até a secretaria assinar alguns papeis."
 
     scene bg secretaria
     with fade
 
-    "A sala tem um design estranho."   
+    "A sala tem um design estranho. Parece algo de um banco de imagens"   
 
     show secretaria
     
@@ -78,9 +81,28 @@ label escolha_nome:
     "Chega dentro da faculdade"
     "Vira em um corredor e..."
 
+    scene bg corredor
+    with vpunch
+
+    pov "Ouch..."
+
+    show hiago:
+        xalign 1.0 yalign 1.0
+    hb "Me desculpe moça"
+
+    menu: 
+
+        "Você não olha por onde anda?":
+            $ romance_points =+ 1
+
+        "Sai da minha frente ô, to atrasada pra aula":
+            $ romance_points =- 1
+
+        "Tudo bem, eu estava correndo sem olhar":
+            $ romance_points =+ 1
     
 
-
+    
     # This ends the game.
 
     return
