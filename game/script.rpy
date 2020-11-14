@@ -2,6 +2,8 @@
 
 image secretaria = "secretaria.png"
 image contrato = "contrato.jpg"
+image maos = "maos.jpg"
+
 image hiago = "hiago_oculos.png"
 image hiago_putasso = "hiago_oculos_putasso.png"
 
@@ -94,6 +96,7 @@ label escolha_nome:
 
         "Você não olha por onde anda?":
             $ romance_points =+ 1
+            jump ajuntar_caderno
 
         "Sai da minha frente ô, to atrasada pra aula":
             $ romance_points =- 1
@@ -102,7 +105,58 @@ label escolha_nome:
             $ romance_points =+ 1
     
 
+label ajuntar_caderno:
+
+    hb "Foi mal mesmo"
+    hb "Parece que seus cadernos cairam todos no chão"
+    hb "Deixe-me ajuda-lá"
+
+    pov "Não precisa"
+
+    hide hiago
+    with fade
+
+    "Vocês dois se abaixam para ajuntar os cadernos"
+    "Ao olhar mais de perto você percebe que a pele dele é clara"
+    "Clara como leite de amêndoas"
+    "Você se pergunta como podem tirar leite de um animal com mamilos tão pequenos"
+
+    show maos
+    with fade
+
+    "Ao tentar pegar os cadernos suas mãos se encontram"
+    "Você sente seu rosto ficar vermelho"
+
+    hide maos
+    with fade
+
+    menu:
+
+        "Desculpa":
+            $ romance_points =+ 0
     
+    show hiago
+    hb "Tudo bem"
+
+    menu: 
+
+        "Bem acho melhor eu ir indo, não quero chegar atrasada":
+            $ romance_points =+ 0
+
+    hb "Certo, boa aula"
+
+    hide hiago
+
+    hb "Ei... espero te ver por ai"
+
+    "Você da um sorriso e sai em direção a sua sala"
+
+    show bg black
+    with fade
+
+    
+
+
     # This ends the game.
 
     return
